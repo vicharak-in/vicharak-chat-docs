@@ -14,9 +14,9 @@ Vicharak-Chat is a streamlined solution designed exclusively for Axon SBCs, powe
 - update apt package list using `sudo apt update`
 - check if NPU driver version >= 0.9.8 using `sudo cat /sys/kernel/debug/rknpu/version`
   - if driver version < 0.9.8, update the kernel as follows
-  - check kernel version using `uname -r`
-  - if kernel version is 5.\*.\* , then run `sudo apt install linux-image-5.10.230-axon`
-  - else if kernel version is 6.\*.\*, then run `sudo apt reinstall linux-image-6.1.75-axon linux-headers-6.1.75-axon`
+  - check kernel version using `uname -a`
+  - if kernel version is 5.\*.\* , then run `sudo apt install linux-image-5.10.233-axon`
+  - else if kernel version is 6.\*.\*, then run either `sudo upgrade` to upgrade all packages or run `sudo apt reinstall linux-image-6.1.75-axon linux-headers-6.1.75-axon` to upgrade kernel only
   - after updating kernel reboot Axon with command `sudo reboot`
   - you can optionally remove older kernel(s)
 - install vicharak chat by running: `sudo apt install vicharak-chat`
