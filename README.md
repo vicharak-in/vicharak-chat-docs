@@ -15,10 +15,10 @@ Vicharak-Chat is a streamlined solution designed exclusively for Axon SBCs, powe
 - check if NPU driver version >= 0.9.8 using `sudo cat /sys/kernel/debug/rknpu/version`
   - if driver version < 0.9.8, update the kernel as follows
   - check kernel version using `uname -a`
+  - if kernel version is 6.\*.\*, then run either `sudo upgrade` to upgrade all packages or run `sudo apt reinstall linux-image-6.1.75-axon linux-headers-6.1.75-axon` to upgrade kernel only
   - if kernel version is 5.\*.\* , then run `sudo apt install linux-image-5.10.233-axon`
-  - else if kernel version is 6.\*.\*, then run either `sudo upgrade` to upgrade all packages or run `sudo apt reinstall linux-image-6.1.75-axon linux-headers-6.1.75-axon` to upgrade kernel only
+  - if kernel version is 5.\*.\*, then make sure to remove older kernel after installing newer kernel, like `sudo apt remove linux-image-5.10.160-axon`
   - after updating kernel reboot Axon with command `sudo reboot`
-  - you can optionally remove older kernel(s)
 - install vicharak chat by running: `sudo apt install vicharak-chat`
 - to remove and free up space run `sudo apt remove vicharak-chat`
 - in future to update vicharak-chat to get latest feature, run:  
@@ -122,4 +122,18 @@ Example usage way to use custom model:
 ![custom model example](assets/images/custom_model_example.png)
 
 
-For instructions regarding how to compile your LLM model to run with vicharak-chat, please checkout [Axon-NPU-Guide](https://github.com/vicharak-in/Axon-NPU-Guide?tab=readme-ov-file#how-to-convert-llm-models-from-huggingface-or-gguf-file-to-rkllm-format-and-run-on-axon)
+For instructions regarding how to compile your LLM model to run with vicharak-chat, please checkout [Axon-NPU-Guide](https://github.com/vicharak-in/Axon-NPU-Guide?tab=readme-ov-file#how-to-convert-llm-models-from-huggingface-or-gguf-file-to-rkllm-format-and-run-on-axon)   
+
+### How to use Stable Diffusion 1.5 for image generation
+For running Stable Diffusion 1.5, for the first time only multiple python libraries and rknn model files will be downloaded of total around 3GB.
+- First chose `Stable_Diffusion1.5` option from `model select` menu  
+- After selecting `Stable_Diffusion1.5`, if it is 1st time then it will show a dialogue box on whether you want to download the model.
+- After downloading the model, it will load the model
+- After loading it requires text description of image and number of UNet iterations (3 to 10) to be performed for generation.  
+  (More number of iterations would generate better image but at the cost of extra time)
+
+
+**Example generated image:**  
+Prompt: a beautiful garden with colourful flowers and lake in between  
+Iterations: 10  
+![Stable Diffusion example](assets/images/stable_diffusion_eg.png)
